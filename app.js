@@ -16,8 +16,8 @@ app.post('/encrypt', async (req, res) => {
 
 app.post('/decrypt', async (req, res) => {
   try {
-    const { jwe, privateKeyPath, password } = req.body;
-    const result = await decryptPayload(jwe, privateKeyPath, password);
+    const { jwe, privateKeyBase64 } = req.body;
+    const result = await decryptPayload(jwe, privateKeyBase64);
     res.json(JSON.parse(result));
   } catch (err) {
     res.status(500).json({ error: err.message });
